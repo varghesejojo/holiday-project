@@ -17,6 +17,31 @@ const HolidayList = () => {
   const [holidayType, setHolidayType] = useState(null);
 
   const ITEMS_PER_PAGE = 10;
+  const customStyles = {
+    option: (baseStyles, state) => ({
+      ...baseStyles,
+      color: 'black',
+      backgroundColor: state.isFocused ? '#f3f4f6' : 'white',
+      '&:hover': {
+        backgroundColor: '#f3f4f6'
+      }
+    }),
+    menu: (baseStyles) => ({
+      ...baseStyles,
+      backgroundColor: 'white'
+    }),
+    control: (baseStyles) => ({
+      ...baseStyles,
+      backgroundColor: 'transparent',
+      borderColor: '#d1d5db',
+      '&:hover': { borderColor: '#9ca3af' }
+    }),
+    singleValue: (baseStyles) => ({
+      ...baseStyles,
+      color: 'black'
+    })
+  };
+  
 
   const countries = [
     { value: 'US', label: 'United States' },
@@ -99,17 +124,20 @@ const HolidayList = () => {
             <Select
               options={countries}
               value={country}
-              onChange={setCountry}
+              onChange={setCountry} 
+               styles={customStyles}
               className="w-full"
               placeholder="Select Country"
             />
+           
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Year</label>
             <Select
               options={years}
               value={year}
-              onChange={setYear}
+              onChange={setYear}               
+              styles={customStyles}
               className="w-full"
               placeholder="Select Year"
             />
@@ -120,17 +148,19 @@ const HolidayList = () => {
               options={months}
               value={month}
               onChange={setMonth}
+              styles={customStyles}
               isClearable
               className="w-full"
               placeholder="Select Month"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Holiday Type (Optional)</label>
+            <label className="block text-sm font-medium text-black mb-1">Holiday Type (Optional)</label>
             <Select
               options={holidayTypes}
               value={holidayType}
               onChange={setHolidayType}
+              styles={customStyles}
               isClearable
               className="w-full"
               placeholder="Holiday Type"
